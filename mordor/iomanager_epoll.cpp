@@ -357,14 +357,15 @@ IOManager::idle()
             else
                 timeout = -1;
             rc = epoll_wait(m_epfd, events, 64, timeout);
+            MORDOR_LOG_LEVEL(g_log, (rc < 0 && errno != EINTR) ? Log::ERROR : Log::VERBOSE)
+                << this
+                << " epoll_wait(" << m_epfd << ", 64, " << timeout << "): " << rc
+                << " (" << lastError() << ")";
             if (rc < 0 && errno == EINTR)
                 nextTimeout = nextTimer();
             else
                 break;
         } while (true);
-        MORDOR_LOG_LEVEL(g_log, rc < 0 ? Log::ERROR : Log::VERBOSE) << this
-            << " epoll_wait(" << m_epfd << ", 64, " << timeout << "): " << rc
-            << " (" << lastError() << ")";
         if (rc < 0)
             MORDOR_THROW_EXCEPTION_FROM_LAST_ERROR_API("epoll_wait");
         std::vector<boost::function<void ()> > expired = processTimers();
