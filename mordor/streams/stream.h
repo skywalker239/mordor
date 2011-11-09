@@ -88,7 +88,7 @@ public:
     /// @param type Which ends of the stream to close
     /// @pre type == BOTH || type == READ || type == WRITE
     /// @pre if (type != BOTH) supportsHalfClose()
-    virtual void close(CloseType type = BOTH) {}
+    virtual void close(CloseType /* type */ = BOTH) {}
 
     /// @brief Read data from the Stream
     /// @details
@@ -180,7 +180,7 @@ public:
     /// flush() on any Stream.  In some cases, flush() may not return until
     /// all data has been read from the other end of a pipe-like Stream.
     /// @param flushParent Also flush() a parent stream(), if there is one
-    virtual void flush(bool flushParent = true) {}
+    virtual void flush(bool /* flushParent */ = true) {}
 
     //@{
     /// @brief Find a delimiter by looking ahead in the stream
@@ -241,7 +241,7 @@ public:
     /// @note This event is optional, and will return a disconnected connection
     /// if it is not supported.
     virtual boost::signals2::connection onRemoteClose(
-        const boost::signals2::slot<void ()> &slot)
+        const boost::signals2::slot<void ()> & /* slot */)
     { return boost::signals2::connection(); }
 
 protected:

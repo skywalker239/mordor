@@ -344,7 +344,7 @@ private:
 };
 
 inline std::ostream &operator <<(std::ostream &os,
-    const Statistics::StatisticsDumper &d)
+    const Statistics::StatisticsDumper & /* d */)
 { return Statistics::dump(os); }
 
 template <class T>
