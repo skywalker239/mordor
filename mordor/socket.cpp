@@ -1180,6 +1180,20 @@ Socket::cancelIo(int event, error_t &cancelled, error_t error)
 }
 #endif
 
+void
+Socket::enableSend() {
+    MORDOR_LOG_DEBUG(g_log) << this << " enableSend(); error was (" <<
+                               m_cancelledSend << ")";
+    m_cancelledSend = 0;
+}
+
+void
+Socket::enableReceive() {
+    MORDOR_LOG_DEBUG(g_log) << this << " enableReceive(); error was (" <<
+                               m_cancelledReceive << ")";
+    m_cancelledReceive = 0;
+}
+
 Address::ptr
 Socket::emptyAddress()
 {

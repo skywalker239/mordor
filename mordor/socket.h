@@ -117,6 +117,21 @@ public:
     void cancelSend();
     void cancelReceive();
 
+    //! The initial design of Socket sets the cancelled I/O flag on a
+    //  socket permanently, therefore subsequent I/O attempts fail
+    //  with the same kind of 'I/O cancelled' error (e.g. I/O timeout).
+    //  This probably makes sense for connection-oriented sockets,
+    //  but in lightning almost all operations can timeout
+    //  without the need to recycle the socket. (ping/pong, Paxos phases
+    //  etc.)
+    //
+    //  These methods simply clear the corresponding send/receive cancelled
+    //  flags. Contrary to cancel*(), we do not need to poke the IOManager
+    //  here, as all necessary event polling will be set up by the subsequent
+    //  I/O calls.
+    void enableSend();
+    void enableReceive();
+
     size_t send(const void *buffer, size_t length, int flags = 0);
     size_t send(const iovec *buffers, size_t length, int flags = 0);
     size_t sendTo(const void *buffer, size_t length, int flags, const Address &to);
