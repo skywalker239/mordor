@@ -26,6 +26,7 @@ configure-stamp:
 	dh_testdir
 	# Add here commands to configure the package.
 	touch configure-stamp
+	autoreconf -i
 	./configure --enable-static --without-postgresql --without-yaml --without-protobuf --prefix=/usr
 
 
