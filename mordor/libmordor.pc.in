@@ -5,7 +5,8 @@ includedir=@includedir@
 
 Name: libmordor
 Description: High performance I/O library based on fibers
-Requires: z ssl
+Requires: ssl
 Version: @PACKAGE_VERSION@
-Libs: -L${libdir} -lmordor
+Libs: -L${libdir} -lmordor -lz
+Libs.private: -lboost_program_options-mt -lboost_regex-mt -lboost_thread-mt
 Cflags: -I${includedir}
