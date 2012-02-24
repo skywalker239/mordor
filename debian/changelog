@@ -1,0 +1,5 @@
+libmordor (0.0.0-9a3abdc) stable; urgency=low
+
+  * Initial debianization.
+
+ -- Alexander Kharitonov <skywalker@yandex-team.ru>  Fri, 24 Feb 2012 17:19:11 +0400

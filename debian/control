@@ -1,0 +1,19 @@
+Source: libmordor
+Priority: optional
+Maintainer: Alexander Kharitonov <skywalker@yandex-team.ru>
+Standards-Version: 3.7.2
+Build-Depends: debhelper (>= 4), g++, autoconf, automake, libtool, libboost-dev, ragel, zlib1g-dev, libboost-program-options-dev, libboost-regex-dev, pkg-config, libboost-thread-dev, libssl-dev
+
+Package: libmordor
+Architecture: any
+Section: libs
+Priority: optional
+Depends: ${shlibs:Depends}, pkg-config
+Description: A high performance IO library based on fibers.
+
+Package: libmordor-dev
+Architecture: any
+Section: devel
+Priority: optional
+Depends: libboost-dev, libboost-program-options-dev, libboost-regex-dev, libboost-thread-dev, libssl-dev
+Description: A high performance IO library based on fibers, dev headers.
