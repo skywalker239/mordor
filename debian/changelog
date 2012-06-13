@@ -2,7 +2,7 @@ libmordor (0.0.3-9e19f13) stable; urgency=low
 
   * Fix IOManager asserting on operations with stdin.
 
- -- skywalker <skywalker@bscount-dev01g.yandex.net>  Wed, 13 Jun 2012 04:55:43 +0400
+ -- Alexander Kharitonov <skywalker@yandex-team.ru> Wed, 13 Jun 2012 04:55:43 +0400
 
 libmordor (0.0.2-5cdacea) lucid; urgency=low
 
