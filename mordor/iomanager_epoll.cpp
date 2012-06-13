@@ -212,7 +212,7 @@ IOManager::stopping()
 void
 IOManager::registerEvent(int fd, Event event, boost::function<void ()> dg)
 {
-    MORDOR_ASSERT(fd > 0);
+    MORDOR_ASSERT(fd >= 0);
     MORDOR_ASSERT(Scheduler::getThis());
     MORDOR_ASSERT(dg || Fiber::getThis());
     MORDOR_ASSERT(event == READ || event == WRITE || event == CLOSE);
@@ -258,7 +258,7 @@ IOManager::registerEvent(int fd, Event event, boost::function<void ()> dg)
 bool
 IOManager::unregisterEvent(int fd, Event event)
 {
-    MORDOR_ASSERT(fd > 0);
+    MORDOR_ASSERT(fd >= 0);
     MORDOR_ASSERT(event == READ || event == WRITE || event == CLOSE);
 
     boost::mutex::scoped_lock lock(m_mutex);
@@ -300,7 +300,7 @@ IOManager::unregisterEvent(int fd, Event event)
 bool
 IOManager::cancelEvent(int fd, Event event)
 {
-    MORDOR_ASSERT(fd > 0);
+    MORDOR_ASSERT(fd >= 0);
     MORDOR_ASSERT(event == READ || event == WRITE || event == CLOSE);
 
     boost::mutex::scoped_lock lock(m_mutex);

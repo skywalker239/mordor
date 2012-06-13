@@ -74,7 +74,7 @@ void
 IOManager::registerEvent(int fd, Event events,
                                boost::function<void ()> dg)
 {
-    MORDOR_ASSERT(fd > 0);
+    MORDOR_ASSERT(fd >= 0);
     MORDOR_ASSERT(Scheduler::getThis());
     MORDOR_ASSERT(Fiber::getThis());
 
