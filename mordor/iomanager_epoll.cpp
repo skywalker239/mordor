@@ -220,7 +220,7 @@ IOManager::registerEvent(int fd, Event event, boost::function<void ()> dg)
     // Look up our state in the global map, expanding it if necessary
     boost::mutex::scoped_lock lock(m_mutex);
     if (m_pendingEvents.size() <= (size_t)fd)
-        m_pendingEvents.resize(fd * 3 / 2);
+        m_pendingEvents.resize((fd + 1) * 3 / 2);
     if (!m_pendingEvents[fd]) {
         m_pendingEvents[fd] = new AsyncState();
         m_pendingEvents[fd]->m_fd = fd;
