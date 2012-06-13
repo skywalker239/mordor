@@ -219,13 +219,13 @@ IOManager::registerEvent(int fd, Event event, boost::function<void ()> dg)
 
     // Look up our state in the global map, expanding it if necessary
     boost::mutex::scoped_lock lock(m_mutex);
-    if (m_pendingEvents.size() < (size_t)fd)
+    if (m_pendingEvents.size() =< (size_t)fd)
         m_pendingEvents.resize(fd * 3 / 2);
-    if (!m_pendingEvents[fd - 1]) {
-        m_pendingEvents[fd - 1] = new AsyncState();
-        m_pendingEvents[fd - 1]->m_fd = fd;
+    if (!m_pendingEvents[fd]) {
+        m_pendingEvents[fd] = new AsyncState();
+        m_pendingEvents[fd]->m_fd = fd;
     }
-    AsyncState &state = *m_pendingEvents[fd - 1];
+    AsyncState &state = *m_pendingEvents[fd];
     MORDOR_ASSERT(fd == state.m_fd);
     lock.unlock();
 
@@ -262,11 +262,11 @@ IOManager::unregisterEvent(int fd, Event event)
     MORDOR_ASSERT(event == READ || event == WRITE || event == CLOSE);
 
     boost::mutex::scoped_lock lock(m_mutex);
-    if (m_pendingEvents.size() < (size_t)fd)
+    if (m_pendingEvents.size() <= (size_t)fd)
         return false;
-    if (!m_pendingEvents[fd - 1])
+    if (!m_pendingEvents[fd])
         return false;
-    AsyncState &state = *m_pendingEvents[fd - 1];
+    AsyncState &state = *m_pendingEvents[fd];
     MORDOR_ASSERT(fd == state.m_fd);
     lock.unlock();
 
@@ -304,11 +304,11 @@ IOManager::cancelEvent(int fd, Event event)
     MORDOR_ASSERT(event == READ || event == WRITE || event == CLOSE);
 
     boost::mutex::scoped_lock lock(m_mutex);
-    if (m_pendingEvents.size() < (size_t)fd)
+    if (m_pendingEvents.size() <= (size_t)fd)
         return false;
-    if (!m_pendingEvents[fd - 1])
+    if (!m_pendingEvents[fd])
         return false;
-    AsyncState &state = *m_pendingEvents[fd - 1];
+    AsyncState &state = *m_pendingEvents[fd];
     MORDOR_ASSERT(fd == state.m_fd);
     lock.unlock();
 
