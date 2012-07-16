@@ -1,3 +1,9 @@
+libmordor (0.0.6-ba8ba18) precise; urgency=low
+
+  * Build on Ubuntu 12.04.
+
+ -- Alexander Kharitonov <skywalker@yandex-team.ru>  Mon, 16 Jul 2012 13:31:57 +0000
+
 libmordor (0.0.5-8de4c85) stable; urgency=low
 
   * Fix pending event reallocation in iomanager_epoll.
