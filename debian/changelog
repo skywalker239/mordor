@@ -1,4 +1,4 @@
-libmordor (0.0.6-ba8ba18) precise; urgency=low
+libmordor (0.0.6-ba8ba18) stable; urgency=low
 
   * Build on Ubuntu 12.04.
 
