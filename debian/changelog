@@ -1,3 +1,9 @@
+libmordor (0.0.7-ba8ba18) stable; urgency=low
+
+  * Fix dependencies in debian/control
+
+ -- Alexander Kharitonov <skywalker@yandex-team.ru>  Mon, 16 Jul 2012 14:42:35 +0000
+
 libmordor (0.0.6-ba8ba18) stable; urgency=low
 
   * Build on Ubuntu 12.04.
